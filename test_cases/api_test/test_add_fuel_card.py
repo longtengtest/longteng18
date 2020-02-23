@@ -1,6 +1,6 @@
 import pytest
 
-
+@pytest.mark.smoke
 def test_add_fuel_card_normal(api, db, data):
     """测试添加新的加油卡"""
     card_number = data.get('NEW_CARD_01')
@@ -19,6 +19,7 @@ def test_add_fuel_card_normal(api, db, data):
     db.delete_card(card_number)
 
 
+@pytest.mark.p2
 def test_add_fuel_card_exists(api, db, data):
     """测试添加已存在的加油卡"""
     card_number = data.get('EXIST_CARD_01')
@@ -37,7 +38,7 @@ def test_add_fuel_card_exists(api, db, data):
     assert res_dict.get('msg') == '该卡已添加'
     assert res_dict.get('success') is False
 
-
+@pytest.mark.p2
 def test_add_fuel_card_twice(api, db, data):
     card_number1 = data.get('NEW_CARD_01')
     card_number2 = data.get('NEW_CARD_02')
