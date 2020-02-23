@@ -22,10 +22,13 @@ def test_add_fuel_card_normal(api, db, data):
 def test_add_fuel_card_exists(api, db, data):
     """测试添加已存在的加油卡"""
     card_number = data.get('EXIST_CARD_01')
+
+    # 数据准备
+    db.change_db(f'insert into cardinfo (cardNumber) values ("{card_number}")')
     # 数据检查
-    if db.check_card(card_number) is False:
-        # db.change_db(f'-- insert into cardinfo (cardNumber) values ("{card_number}")')
-        pytest.skip()
+    # if db.check_card(card_number) is False:
+    #     # db.change_db(f'-- insert into cardinfo (cardNumber) values ("{card_number}")')
+    #     pytest.skip()
 
     # 发送请求
     res_dict = api.add_fuel_card(card_number)

@@ -1,5 +1,3 @@
 requests
 pytest
 pytest-html
-pyyaml
-pymysql
